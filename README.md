@@ -1,2 +1,2 @@
 # whispering
-Some scripts to work with whisper
+This projects contains work involved working with OpenAI Whisper
