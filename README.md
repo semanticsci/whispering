@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/5809983/227638054-c2212a75-b434-4039-9748-1067625d5d96.png)
+
 ## whispering
 
 This is project that takes advantage of speech-to-text technology offered by OpenAI https://openai.com/research/whisper
