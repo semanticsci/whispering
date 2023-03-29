@@ -1,5 +1,7 @@
 ### whispering
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This is project that takes advantage of speech-to-text technology offered by OpenAI https://openai.com/research/whisper
 
 The excellent use case is to leverage that for converting utterances to text.
