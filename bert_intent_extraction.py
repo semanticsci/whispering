@@ -37,7 +37,13 @@ import csv
 import os
 import datetime
 
-df = pd.read_csv("intents_medicare_short.csv", delimiter='|')
+import matplotlib.pyplot as plt
+
+from umap import UMAP
+
+from sentence_transformers import SentenceTransformer
+
+df = pd.read_csv("intents_medicaid_short.csv", delimiter='|')
  
 # we add this to remove stopwords
 vectorizer_model = CountVectorizer(ngram_range=(1, 3), stop_words="english")
@@ -65,7 +71,9 @@ print(freq.head(50))
 topic_iter = 0
 
 #create text file per topics
-while topic_iter < 36:
+isToOutputIntents = False
+
+while topic_iter < 36 and isToOutputIntents:
     topic_id = topic_iter  # Choose the topic you want to explore
 
     csv_filename = freq.Name[topic_iter+1] + ".csv"
@@ -94,5 +102,21 @@ while topic_iter < 36:
 
     print("Done. Going to next file")
 
+# Visualize topics
+fig = model.visualize_topics()
 
-#model.visualize_topics()
+# Save figure to file
+fig.write_html("medicare_topics.html")
+
+
+sentence_model = SentenceTransformer("all-MiniLM-L6-v2")
+embeddings = sentence_model.encode(docs, show_progress_bar=False)
+
+# Run the visualization with the original embeddings
+model.visualize_documents(docs, embeddings=embeddings)
+
+# Reduce dimensionality of embeddings, this step is optional but much faster to perform iteratively:
+reduced_embeddings = UMAP(n_neighbors=10, n_components=2, min_dist=0.0, metric='cosine').fit_transform(embeddings)
+fig2 = model.visualize_documents(docs, reduced_embeddings=reduced_embeddings)
+# Save figure to file
+fig2.write_html("medicare_topics_details.html")
