@@ -18,7 +18,7 @@ csv_filename = 'log_intent_results.csv' #resulting file
 fieldnames = ['transcription','intent']
 
 with open(csv_filename, 'w', newline='') as file:
-    writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter=',')
+    writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter='|')
     writer.writeheader()
 
 # Open the JSON file
@@ -53,5 +53,5 @@ for element in data:
             data = {'transcription': log_transcription, 'intent': log_intent}
 
             with open(csv_filename, 'a', newline='') as file:
-                writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter=',')
+                writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter='|')
                 writer.writerow(data)
