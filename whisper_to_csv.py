@@ -16,7 +16,7 @@ import datetime
 # Define the directory path where .wav files are located
 directory_path = '.' #set directory location with audio files
 
-model = whisper.load_model('medium', 'cpu')
+model = whisper.load_model('tiny', 'cpu')
 
 csv_filename = 'outputresult.csv'
 
@@ -28,7 +28,9 @@ with open(csv_filename, 'w', newline='') as file:
 
 # Iterate over the files in the directory
 for filename in os.listdir(directory_path):
-    if filename.endswith('.WAV'): # check if the file is a .wav file
+    print("Going through files: " + filename)
+    if filename.endswith('.wav'): # check if the file is a .wav file
+        print("working on: " + filename)
         result = model.transcribe(filename)
         print(filename, result["text"])
         data = {'date': datetime.datetime.now(), 'filename': filename, 'transcription': result["text"]}

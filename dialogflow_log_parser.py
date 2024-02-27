@@ -22,7 +22,7 @@ with open(csv_filename, 'w', newline='') as file:
     writer.writeheader()
 
 # Open the JSON file
-with open('downloaded-logs-20230428-145207.json', 'r') as f: #dialogflow log file from Logs Explorer
+with open('report.json', 'r') as f: #dialogflow log file from Logs Explorer
     # Load the contents of the file as a JSON object
     data = json.load(f)
 
