@@ -72,7 +72,10 @@ def process_csv_files(input_directory, output_file, filter_date, exclude_words):
                             # Remove rows with "entity" in the 4th column
                             if row[3].lower() == "entity":
                                 continue
-                            
+                            # Exclude default_fallback
+                            if row[5].lower() == "default_fallback":
+                                continue                            
+
                             # Skip rows where the 5th column contains numbers or excluded words
                             if re.search(r'\d', row[4]) or any(word in row[4] for word in exclude_words):
                                 continue
@@ -89,7 +92,7 @@ def process_csv_files(input_directory, output_file, filter_date, exclude_words):
 # Example usage
 input_directory = "."  # Replace with the path to your directory
 output_file = "filtered_output.csv"  # Replace with the desired output file name
-filter_date = "2024-12-16"  # Replace with the cutoff date for filtering
-exclude_words = "zero,one,two,three,four,five,six,seven,eight,nine,ten"  # Replace with your comma-separated words to exclude
+filter_date = "2024-12-30"  # Replace with the cutoff date for filtering
+exclude_words = "zero,one,two,three,four,five,six,seven,eight,nine,ten,0,1,2,3,4,5,6,7,8,9"  # Replace with your comma-separated words to exclude
 
 process_csv_files(input_directory, output_file, filter_date, exclude_words)
