@@ -1,3 +1,9 @@
+#To demine the api key create client structure as follows:
+# client = OpenAI(
+#      api_key=....
+#)
+
+
 import pandas as pd
 from openai import OpenAI
 
